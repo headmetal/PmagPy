@@ -81,6 +81,11 @@ class Test_instance(object):
                print "WD program about to run:"
                print(self.name, '-WD', test_directory, '-f', self.infile, '-F', self.outfile, self.arg_0, self.arg_1, self.arg_2, self.arg_3, self.arg_4, self.arg_5, 'stdin='+str(self.stdin))
                obj = env.run(self.name, '-WD', test_directory, '-f', self.infile, '-F', self.outfile, self.arg_0, self.arg_1, self.arg_2, self.arg_3, self.arg_4, self.arg_5, stdin=self.stdin)
+               self.infile = test_file_prefix + self.infile
+               if self.outfile:
+                    self.outfile = test_file_prefix + self.outfile
+               # insert something here that changes self.infile, self.outfile to add test_file_prefix ??
+
           else:
                print "Non-WD program about to run:"
                print self.name, '-f', self.infile, '-F', self.outfile, self.arg_0, self.arg_1, self.arg_2, self.arg_3, self.arg_4, self.arg_5,  'stdin=' + str(self.stdin)
@@ -362,11 +367,11 @@ def complete_download_magic_test(): # irregular
      output = str(download_magic.run_program()).split()
      print output
      clean_out = []
-     for thing in output: # removing long path names from output, so it can be run on any machine
-          if directory in thing:
+     for string in output: # removing long path names from output, so it can be run on any machine
+          if directory in string:
                pass
           else:
-               clean_out.append(thing)
+               clean_out.append(string)
      print clean_out
      download_magic.check_list_output(clean_out, download_magic_reference)
      subprocess.call(['rm', '-rf', 'Location_1/'])
@@ -378,33 +383,37 @@ download_magic_ref = ['working', 'on:', "'er_locations'", 'er_locations', 'data'
 
 def complete_pt_rot_test(): # Irregular type.  has both an -ff and an -f option.  testing both here. 
      """test pt_rot.py"""
-     pt_rot = Test_instance('pt_rot.py', 'pt_rot_example.dat', 'pt_rot_results_new.out', 'pt_rot_results_correct.out', 'pt_rot_results_incorrect.out', None, True)
+     pt_rot = Test_instance('pt_rot.py', 'pt_rot_example.dat', 'pt_rot_results_new.out', test_file_prefix + 'pt_rot_results_correct.out', test_file_prefix + 'pt_rot_results_incorrect.out', None, True)
      pt_rot.file_in_file_out_sequence()
      # then, testing the -ff option
      input_1 = 'pt_rot_extra_in_nam_180-200.txt'
      input_2 = 'pt_rot_extra_in_nam_panA.frp'
-     pt_rot_extra_outfile = 'pt_rot_extra_out.out'
-     pt_rot_extra_reference = 'pt_rot_extra_correct.out'
-     pt_rot_extra_wrong ='pt_rot_results_incorrect.out'
-     pt_rot_extra = Test_instance('pt_rot.py', None, pt_rot_extra_outfile, pt_rot_extra_reference, pt_rot_extra_wrong, None, True, '-ff', input_1, input_2)
+     pt_rot_outfile = 'pt_rot_extra_out.out'
+     pt_rot_reference = test_file_prefix + 'pt_rot_extra_correct.out'
+     pt_rot_wrong = test_file_prefix + 'pt_rot_results_incorrect.out'
+     pt_rot = Test_instance('pt_rot.py', None, pt_rot_outfile, pt_rot_reference, pt_rot_wrong, None, True, '-ff', input_1, input_2)
      print "Testing pt_rot.py with -ff option"
-     obj = env.run('pt_rot.py', '-WD', directory, '-ff', input_1, input_2 , '-F', pt_rot_extra_outfile)
-     pt_rot_extra.check_file_output(pt_rot_extra.outfile, pt_rot_extra.ref_out)
-     pt_rot_extra_unittest = Bad_test(pt_rot_extra)
+     obj = env.run('pt_rot.py', '-WD', test_directory, '-ff', input_1, input_2 , '-F', pt_rot_outfile)
+     pt_rot.outfile = test_file_prefix + pt_rot.outfile # 
+     print pt_rot.outfile
+     print pt_rot.ref_out
+     pt_rot.check_file_output(pt_rot.outfile, pt_rot.ref_out)
+     pt_rot_extra_unittest = Bad_test(pt_rot)
      pt_rot_extra_unittest.test_file_for_error()
+     
 
 def complete_customize_criteria_test():  # file type
      """test customize_criteria.py"""
-     customize_criteria_infile = 'customize_criteria_example.dat'
-     customize_criteria_output = 'customize_criteria_output_new.out'
-     customize_criteria_reference = "customize_criteria_output_correct.out"
-     customize_criteria_wrong = "customize_criteria_output_incorrect.out"
+     customize_criteria_infile = test_file_prefix + 'customize_criteria_example.dat'
+     customize_criteria_output = test_file_prefix + 'customize_criteria_output_new.out'
+     customize_criteria_reference = test_file_prefix + "customize_criteria_output_correct.out"
+     customize_criteria_wrong = test_file_prefix + "customize_criteria_output_incorrect.out"
      customize_criteria = Test_instance('customize_criteria.py', customize_criteria_infile, customize_criteria_output, customize_criteria_reference, customize_criteria_wrong, '1', False)
      customize_criteria.file_in_file_out_sequence(interactive=True)
 
 def complete_dipole_pinc_test(): # list type
      """test dipole_pinc.py"""
-     dipole_pinc_infile = 'dipole_pinc_example.dat'
+     dipole_pinc_infile = test_file_prefix + 'dipole_pinc_example.dat'
      dipole_pinc_outfile = None
      dipole_pinc_reference = ['33.0', '38.9', '54.5', '9.9']
      dipole_pinc_wrong = [1,2,3,4]
@@ -413,7 +422,7 @@ def complete_dipole_pinc_test(): # list type
 
 def complete_dipole_plat_test(): # list type
      """test dipole_plat.py"""
-     dipole_plat_infile = 'dipole_plat_example.dat'
+     dipole_plat_infile = test_file_prefix + 'dipole_plat_example.dat'
      dipole_plat_outfile = None
      dipole_plat_reference = ['9.2', '11.4', '19.3', '2.5']
      dipole_plat_wrong = "wrong"
@@ -435,19 +444,19 @@ def complete_grab_magic_key_test(): # List type
 
 def complete_incfish_test(): # file type 
      """test incfish.py"""
-     incfish_infile = 'incfish_example_inc.dat'
-     incfish_outfile = 'incfish_results_new.out'
-     incfish_reference = 'incfish_results_correct.out'
-     incfish_wrong = 'incfish_results_incorrect.out'
+     incfish_infile = test_file_prefix + 'incfish_example_inc.dat'
+     incfish_outfile = test_file_prefix + 'incfish_results_new.out'
+     incfish_reference = test_file_prefix + 'incfish_results_correct.out'
+     incfish_wrong = test_file_prefix + 'incfish_results_incorrect.out'
      incfish = Test_instance('incfish.py', incfish_infile, incfish_outfile, incfish_reference, incfish_wrong, None, False)
      incfish.file_in_file_out_sequence()
 
-def complete_magic_select_test(): # file type.. but it doesn't work yet!  Lisa must add in a WD option.  
+def complete_magic_select_test(): 
      """test magic_select.py"""
      magic_select_infile = 'magic_select_example.txt'
      magic_select_outfile = 'magic_select_results_new.out'
-     magic_select_reference = 'magic_select_results_correct.out'
-     magic_select_wrong = 'magic_select_results_incorrect.out'
+     magic_select_reference = test_file_prefix + 'magic_select_results_correct.out'
+     magic_select_wrong = test_file_prefix + 'magic_select_results_incorrect.out'
      magic_select = Test_instance('magic_select.py', magic_select_infile, magic_select_outfile, magic_select_reference, magic_select_wrong, None, True, '-key', 'magic_method_codes', 'LP-DIR-AF', 'has')
      magic_select.file_in_file_out_sequence()
 
@@ -455,18 +464,18 @@ def complete_magic_select_test(): # file type.. but it doesn't work yet!  Lisa m
 def complete_nrm_specimens_magic_test(): # file type
      """test nrm_specimens_magic.py"""
      print "Testing nrm_specimens_magic.py"
-     fsa = file_prefix + 'nrm_specimens_magic_er_samples.txt'
-     nrm_specimens_magic_infile = 'nrm_specimens_magic_measurements.txt'
-     nrm_specimens_magic_outfile = 'nrm_specimens_results_new.out'
-     nrm_specimens_magic_reference = 'nrm_specimens_results_correct.out'
-     nrm_specimens_magic_wrong = 'nrm_specimens_results_incorrect.out'
+     fsa = test_file_prefix + 'nrm_specimens_magic_er_samples.txt'
+     nrm_specimens_magic_infile = test_file_prefix + 'nrm_specimens_magic_measurements.txt'
+     nrm_specimens_magic_outfile = test_file_prefix + 'nrm_specimens_results_new.out'
+     nrm_specimens_magic_reference = test_file_prefix + 'nrm_specimens_results_correct.out'
+     nrm_specimens_magic_wrong = test_file_prefix + 'nrm_specimens_results_incorrect.out'
      nrm_specimens_magic = Test_instance('nrm_specimens_magic.py', nrm_specimens_magic_infile, nrm_specimens_magic_outfile, nrm_specimens_magic_reference, nrm_specimens_magic_wrong, None, False, '-fsa', fsa, '-crd', 'g')
      nrm_specimens_magic.file_in_file_out_sequence()
      print "Successfully completed nrm_specimens_magic.py tests"
 
 def complete_sundec_test(): # list type
      """test sundec.py"""
-     sundec_infile = 'sundec_example.dat'
+     sundec_infile = test_file_prefix + 'sundec_example.dat'
      sundec_outfile = None
      sundec_reference = ['154.2']
      sundec_wrong = ['154.3']
@@ -477,7 +486,7 @@ def complete_sundec_test(): # list type
 
 def complete_pca_test(): # list type
      """test pca_example.py"""
-     pca_infile = 'pca_example.dat'
+     pca_infile = test_file_prefix + 'pca_example.dat'
      pca_outfile = None
      pca_reference = pca_correct_out
      pca_wrong = ['eba24a', 'wrong']
@@ -488,7 +497,7 @@ pca_correct_out = ['eba24a', 'DE-BFL', '0', '0.00', '339.9', '57.9', '9.2830e-05
 
 def complete_scalc_test(): # irregular, & list type
      """test scalc.py"""
-     scalc_infile = 'scalc_example.txt'
+     scalc_infile = test_file_prefix + 'scalc_example.txt'
      scalc_outfile = None
      scalc_reference = ['99', '19.5', '90.0']
      scalc_wrong = ['99', '19.5', '90.1']
@@ -521,7 +530,7 @@ def complete_scalc_test(): # irregular, & list type
 
 def complete_scalc_magic_test():
      """test scalc_magic.py"""
-     scalc_magic_infile = 'scalc_magic_example.txt'
+     scalc_magic_infile = test_file_prefix + 'scalc_magic_example.txt'
      scalc_magic_outfile = None
      scalc_magic_reference = ['13', '17.8', '90.0']
      scalc_magic_wrong = [1, 2, 3, 4]
@@ -534,7 +543,7 @@ def complete_scalc_magic_test():
 
 def complete_s_hext_test(): # list type
      """test s_hext.py"""
-     s_hext_infile = "s_hext_example.dat"
+     s_hext_infile = test_file_prefix + "s_hext_example.dat"
      s_hext_outfile = None
      s_hext_reference = s_hext_correct
      s_hext_wrong = ["wrong", "wronger"]
@@ -545,7 +554,7 @@ s_hext_correct = ['F', '=', '2.56', 'F12', '=', '1.12', 'F23', '=', '2.16', 'N',
 
 def complete_vgp_di_test(): # list type
      """test vgp_di.py"""
-     vgp_di_infile = 'vgp_di_example.dat'
+     vgp_di_infile = test_file_prefix + 'vgp_di_example.dat'
      vgp_di_outfile = None
      vgp_di_reference = ['335.6', '62.9']
      vgp_di_wrong = ['335.6', '20']
@@ -554,8 +563,8 @@ def complete_vgp_di_test(): # list type
 
 def complete_watsonsF_test(): # list/stdout type
      """test_watsonsF.py"""
-     watsonsF_infile = "watsonsF_example_file1.dat"
-     watsonsF_infile2 = file_prefix + "watsonsF_example_file2.dat"
+     watsonsF_infile = test_file_prefix + "watsonsF_example_file1.dat"
+     watsonsF_infile2 = test_file_prefix + "watsonsF_example_file2.dat"
      watsonsF_outfile = None
      watsonsF_reference = ["5.23074427567", "3.2594"]
      watsonsF_wrong = ["5.23074427567", "3.2394"]
@@ -566,17 +575,17 @@ def complete_watsonsF_test(): # list/stdout type
 
 def complete_apwp_test():
      """test apwp.py"""
-     apwp = Test_instance('apwp.py', 'apwp_example.dat', 'apwp_results_new.out', 'apwp_results_correct.out', 'apwp_results_incorrect.out', None, False)
+     apwp = Test_instance('apwp.py', test_file_prefix + 'apwp_example.dat', test_file_prefix + 'apwp_results_new.out', test_file_prefix + 'apwp_results_correct.out',test_file_prefix +  'apwp_results_incorrect.out', None, False)
      apwp.file_in_file_out_sequence(interactive=True)
      
 def complete_b_vdm_test():
      """test b_vdm.py"""
-     b_vdm = Test_instance('b_vdm.py', 'b_vdm_example.dat', 'b_vdm_results_new.out', 'b_vdm_results_correct.out', 'b_vdm_results_incorrect.out', None, False)
+     b_vdm = Test_instance('b_vdm.py', test_file_prefix + 'b_vdm_example.dat', test_file_prefix + 'b_vdm_results_new.out', test_file_prefix + 'b_vdm_results_correct.out', test_file_prefix + 'b_vdm_results_incorrect.out', None, False)
      b_vdm.file_in_file_out_sequence(interactive=True)
 
 def complete_cart_dir_test():
      """test cart_dir.py"""
-     cart_dir = Test_instance('cart_dir.py', 'cart_dir_example.dat', 'cart_dir_results_new.out', 'cart_dir_results_correct.out', 'cart_dir_results_incorrect.out', None, False)
+     cart_dir = Test_instance('cart_dir.py', test_file_prefix + 'cart_dir_example.dat', test_file_prefix + 'cart_dir_results_new.out', test_file_prefix + 'cart_dir_results_correct.out', test_file_prefix + 'cart_dir_results_incorrect.out', None, False)
      cart_dir.file_in_file_out_sequence(interactive=True)
     
 def complete_convert_samples_test(): # irregular.  "-F" option does not work correctly, so outfile must be assigned later. also, -OD option
@@ -1384,7 +1393,7 @@ def complete_working_test():
      complete_TDT_magic_test()
      complete_HUJI_magic_test()
 
-rename_me_tests = {"angle": complete_angle_test, "zeq": complete_zeq_test, "chartmaker": complete_chartmaker_test, "di_eq": complete_di_eq_test, "azdip_magic": complete_azdip_magic_test, "combine_magic": complete_combine_magic_test, "cont_rot": complete_cont_rot_test, "customize_criteria": complete_customize_criteria_test, "download_magic": complete_download_magic_test, "dipole_pinc": complete_dipole_pinc_test, "dipole_plat": complete_dipole_plat_test, "grab_magic_key": complete_grab_magic_key_test, "incfish": complete_incfish_test, "magic_select": complete_magic_select_test, "nrm_specimens": complete_nrm_specimens_magic_test, "sundec": complete_sundec_test, "pca": complete_pca_test, "scalc": complete_scalc_test, "scalc_magic": complete_scalc_magic_test, "vgp_di": complete_vgp_di_test, "watsonsF": complete_watsonsF_test, "apwp": complete_apwp_test, "b_vdm": complete_b_vdm_test, "cart_dir": complete_cart_dir_test, "convert_samples": complete_convert_samples_test, "di_geo": complete_di_geo_test, "di_tilt": complete_di_tilt_test, "dir_cart": complete_dir_cart_test, "di_rot": complete_di_rot_test, "di_vgp": complete_di_vgp_test, "eigs_s": complete_eigs_s_test, "eq_di": complete_eq_di_test, "gobing": complete_gobing_test, "gofish": complete_gofish_test, "gokent": complete_gokent_test, "goprinc": complete_goprinc_test, "igrf": complete_igrf_test, "k15_s": complete_k15_s_test, "mk_redo": complete_mk_redo_test, "pt_rot": complete_pt_rot_test, "s_eigs": complete_s_eigs_test, "s_geo": complete_s_geo_test, "s_tilt": complete_s_tilt_test, "stats": complete_stats_test, "vdm_b": complete_vdm_b_test, "vector_mean": complete_vector_mean_test, "zeq_magic": complete_zeq_magic_redo_test, "ani_depthplot": complete_ani_depthplot_test, "weird_ani_depthplot": weird_ani_depthplot_test, "basemap_magic": complete_basemap_magic_test, "biplot_magic": complete_biplot_magic_test, "chi_magic": complete_chi_magic_test, "common_mean": complete_common_mean_test, "core_depthplot": complete_core_depthplot_test, "dayplot_magic": complete_dayplot_magic_test, "dmag_magic": complete_dmag_magic_test, "eqarea": complete_eqarea_test, "eqarea_ell": complete_eqarea_ell_test, "fishqq": complete_fishqq_test, "foldtest_magic": complete_foldtest_magic_test, "foldtest": complete_foldtest_test, "histplot": complete_histplot_test, "irmaq_magic": complete_irmaq_magic_test, "lnp_magic": complete_lnp_magic_test, "lowrie": complete_lowrie_test, "lowrie_magic": complete_lowrie_magic_test, "plot_cdf": complete_plot_cdf_test, "plotdi_a": complete_plotdi_a_test, "plotxy": complete_plotxy_test, "qqplot": complete_qqplot_test, "quick_hyst": complete_quick_hyst_test, "revtest": complete_revtest_test, "revtest_magic": complete_revtest_magic_test, "site_edit_magic": complete_site_edit_magic_test, "strip_magic": complete_strip_magic_test, "s_hext": complete_s_hext_test, "thellier_magic": complete_thellier_magic_test, "vgpmap_magic": complete_vgpmap_magic_test, "zeq_magic": complete_zeq_magic_test, "agm_magic": complete_agm_magic_test, "upload_magic": complete_upload_magic_test, "make_magic_plots": complete_make_magic_plots_test,"convert2unix": complete_convert2unix_test, "curie": complete_curie_test, "plot_magic_keys": complete_plot_magic_keys_test, "measurements_normalize": complete_measurements_normalize_test, "s_magic": complete_s_magic_test, "ldeo_magic": complete_LDEO_magic_test, "sio_magic": complete_sio_magic_test, "TDT_magic": complete_TDT_magic_test, "HUJI_magic": complete_HUJI_magic_test}
+rename_me_tests = {"angle": complete_angle_test, "zeq": complete_zeq_test, "chartmaker": complete_chartmaker_test, "di_eq": complete_di_eq_test, "azdip_magic": complete_azdip_magic_test, "combine_magic": complete_combine_magic_test, "cont_rot": complete_cont_rot_test, "customize_criteria": complete_customize_criteria_test, "download_magic": complete_download_magic_test, "dipole_pinc": complete_dipole_pinc_test, "dipole_plat": complete_dipole_plat_test, "grab_magic_key": complete_grab_magic_key_test, "incfish": complete_incfish_test, "magic_select": complete_magic_select_test, "nrm_specimens_magic": complete_nrm_specimens_magic_test, "sundec": complete_sundec_test, "pca": complete_pca_test, "scalc": complete_scalc_test, "scalc_magic": complete_scalc_magic_test, "vgp_di": complete_vgp_di_test, "watsonsF": complete_watsonsF_test, "apwp": complete_apwp_test, "b_vdm": complete_b_vdm_test, "cart_dir": complete_cart_dir_test, "convert_samples": complete_convert_samples_test, "di_geo": complete_di_geo_test, "di_tilt": complete_di_tilt_test, "dir_cart": complete_dir_cart_test, "di_rot": complete_di_rot_test, "di_vgp": complete_di_vgp_test, "eigs_s": complete_eigs_s_test, "eq_di": complete_eq_di_test, "gobing": complete_gobing_test, "gofish": complete_gofish_test, "gokent": complete_gokent_test, "goprinc": complete_goprinc_test, "igrf": complete_igrf_test, "k15_s": complete_k15_s_test, "mk_redo": complete_mk_redo_test, "pt_rot": complete_pt_rot_test, "s_eigs": complete_s_eigs_test, "s_geo": complete_s_geo_test, "s_tilt": complete_s_tilt_test, "stats": complete_stats_test, "vdm_b": complete_vdm_b_test, "vector_mean": complete_vector_mean_test, "zeq_magic": complete_zeq_magic_redo_test, "ani_depthplot": complete_ani_depthplot_test, "weird_ani_depthplot": weird_ani_depthplot_test, "basemap_magic": complete_basemap_magic_test, "biplot_magic": complete_biplot_magic_test, "chi_magic": complete_chi_magic_test, "common_mean": complete_common_mean_test, "core_depthplot": complete_core_depthplot_test, "dayplot_magic": complete_dayplot_magic_test, "dmag_magic": complete_dmag_magic_test, "eqarea": complete_eqarea_test, "eqarea_ell": complete_eqarea_ell_test, "fishqq": complete_fishqq_test, "foldtest_magic": complete_foldtest_magic_test, "foldtest": complete_foldtest_test, "histplot": complete_histplot_test, "irmaq_magic": complete_irmaq_magic_test, "lnp_magic": complete_lnp_magic_test, "lowrie": complete_lowrie_test, "lowrie_magic": complete_lowrie_magic_test, "plot_cdf": complete_plot_cdf_test, "plotdi_a": complete_plotdi_a_test, "plotxy": complete_plotxy_test, "qqplot": complete_qqplot_test, "quick_hyst": complete_quick_hyst_test, "revtest": complete_revtest_test, "revtest_magic": complete_revtest_magic_test, "site_edit_magic": complete_site_edit_magic_test, "strip_magic": complete_strip_magic_test, "s_hext": complete_s_hext_test, "thellier_magic": complete_thellier_magic_test, "vgpmap_magic": complete_vgpmap_magic_test, "zeq_magic": complete_zeq_magic_test, "agm_magic": complete_agm_magic_test, "upload_magic": complete_upload_magic_test, "make_magic_plots": complete_make_magic_plots_test,"convert2unix": complete_convert2unix_test, "curie": complete_curie_test, "plot_magic_keys": complete_plot_magic_keys_test, "measurements_normalize": complete_measurements_normalize_test, "s_magic": complete_s_magic_test, "ldeo_magic": complete_LDEO_magic_test, "sio_magic": complete_sio_magic_test, "TDT_magic": complete_TDT_magic_test, "HUJI_magic": complete_HUJI_magic_test}
 
 rename_me_errors_list = open('rename_me_errors_list.txt', 'w')
 
