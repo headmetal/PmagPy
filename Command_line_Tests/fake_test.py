@@ -26,6 +26,10 @@ try:
     from Tkinter import *
 except Exception as ex:
     print 'ex', ex
+try:
+    import _tkinter
+except Exception as ex:
+    print 'ex', ex
 
 print 'hello'
     
