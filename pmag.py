@@ -3,7 +3,7 @@ from numpy import random
 import numpy.linalg
 import exceptions
 import os
-import check_updates
+#import check_updates
 import scipy
 from scipy import array,sqrt,mean
 
