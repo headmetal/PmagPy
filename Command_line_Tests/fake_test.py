@@ -10,5 +10,22 @@ from scripttest import TestFileEnvironment
 env = TestFileEnvironment('./new-test-output')
 import unittest
 
+try:
+    import Tkinter
+except Exception as ex:
+    print 'ex', ex
+try:
+    import scipy
+except Exception as ex:
+    print 'ex', ex
+try:
+    from scipy import *
+except Exception as ex:
+    print 'ex', ex
+try:
+    from Tkinter import *
+except Exception as ex:
+    print 'ex', ex
+
 print 'hello'
     
