@@ -5,8 +5,8 @@ python:
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install: 
     - pip install scripttest
-    - pip install tkinter
     - pip install python-tk
+#    - pip install tkinter # causes an error
 # command to run tests, e.g. python setup.py test
 script:  
     - python Command_line_Tests/fake_test.py 
