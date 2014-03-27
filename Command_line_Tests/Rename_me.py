@@ -591,74 +591,74 @@ def complete_cart_dir_test():
 def complete_convert_samples_test(): # irregular.  "-F" option does not work correctly, so outfile must be assigned later. also, -OD option
      """test convert_samples.py"""
      subprocess.call('rm orient_Northern_Iceland.txt', shell=True)
-     convert_samples = Test_instance('convert_samples.py', 'convert_samples_example.dat', "", 'convert_samples_results_correct.out', 'convert_samples_results_incorrect.out', None, True)
+     convert_samples = Test_instance('convert_samples.py', 'convert_samples_example.dat', "", test_file_prefix + 'convert_samples_results_correct.out', test_file_prefix + 'convert_samples_results_incorrect.out', None, True)
      obj = env.run('convert_samples.py', '-f', 'convert_samples_example.dat', '-WD', directory, '-OD', directory)
      print obj.stdout
      convert_samples.test_help()
-     convert_samples.outfile = file_prefix + 'orient_Northern_Iceland.txt'
+     convert_samples.outfile = test_file_prefix + 'orient_Northern_Iceland.txt'
      convert_samples.check_file_output(convert_samples.outfile, convert_samples.ref_out)
      convert_samples.unittest_file()
 
 def complete_di_geo_test():
      """test di_geo.py"""
-     di_geo = Test_instance('di_geo.py', 'di_geo_example.dat', 'di_geo_results_new.out', 'di_geo_results_correct.out', 'di_geo_results_incorrect.out', None, False)
+     di_geo = Test_instance('di_geo.py', test_file_prefix + 'di_geo_example.dat', test_file_prefix + 'di_geo_results_new.out', test_file_prefix + 'di_geo_results_correct.out', test_file_prefix + 'di_geo_results_incorrect.out', None, False)
      di_geo.file_in_file_out_sequence(interactive=True)
 
 def complete_di_tilt_test():
      """test di_tilt.py"""
-     di_tilt = Test_instance('di_tilt.py', 'di_tilt_example.dat', 'di_tilt_results_new.out', 'di_tilt_results_correct.out', 'di_tilt_results_incorrect.out', None, False)
+     di_tilt = Test_instance('di_tilt.py', test_file_prefix + 'di_tilt_example.dat', test_file_prefix + 'di_tilt_results_new.out', test_file_prefix + 'di_tilt_results_correct.out', test_file_prefix + 'di_tilt_results_incorrect.out', None, False)
      di_tilt.file_in_file_out_sequence(interactive=True)
 
 def complete_dir_cart_test():
      """test dir_cart.py"""
-     dir_cart = Test_instance('dir_cart.py', 'dir_cart_example.dat', 'dir_cart_results_new.out', 'dir_cart_results_correct.out', 'dir_cart_results_incorrect.out', None, False)
+     dir_cart = Test_instance('dir_cart.py', test_file_prefix + 'dir_cart_example.dat', test_file_prefix + 'dir_cart_results_new.out', test_file_prefix + 'dir_cart_results_correct.out', test_file_prefix + 'dir_cart_results_incorrect.out', None, False)
      dir_cart.file_in_file_out_sequence(interactive=True)
 
 def complete_di_rot_test():
      """test di_rot.py"""
-     di_rot = Test_instance('di_rot.py', 'di_rot_example.dat', 'di_rot_results_new.out', 'di_rot_results_correct.out', 'di_rot_results_incorrect.out', None, False)
+     di_rot = Test_instance('di_rot.py', test_file_prefix + 'di_rot_example.dat', test_file_prefix + 'di_rot_results_new.out', test_file_prefix + 'di_rot_results_correct.out', test_file_prefix + 'di_rot_results_incorrect.out', None, False)
      di_rot.file_in_file_out_sequence()
 
 def complete_di_vgp_test():
      """test di_vgp.py"""
-     di_vgp = Test_instance('di_vgp.py', 'di_vgp_example.dat', 'di_vgp_results_new.out', 'di_vgp_results_correct.out', 'di_vgp_results_incorrect.out', None, False)
+     di_vgp = Test_instance('di_vgp.py', test_file_prefix + 'di_vgp_example.dat', test_file_prefix + 'di_vgp_results_new.out', test_file_prefix + 'di_vgp_results_correct.out', test_file_prefix + 'di_vgp_results_incorrect.out', None, False)
      di_vgp.file_in_file_out_sequence(interactive=True)
 
 def complete_eigs_s_test():
      """test eigs_s.py"""
-     eigs_s = Test_instance('eigs_s.py', 'eigs_s_example.dat', 'eigs_s_results_new.out', 'eigs_s_results_correct.out', 'eigs_s_results_incorrect.out', None, False)
+     eigs_s = Test_instance('eigs_s.py', test_file_prefix + 'eigs_s_example.dat', test_file_prefix + 'eigs_s_results_new.out', test_file_prefix + 'eigs_s_results_correct.out', test_file_prefix + 'eigs_s_results_incorrect.out', None, False)
      eigs_s.file_in_file_out_sequence()
 
 def complete_eq_di_test():
      """test eq_di.py"""
-     eq_di = Test_instance('eq_di.py', 'eq_di_example.dat', 'eq_di_results_new.out', 'eq_di_results_correct.out', 'eq_di_results_incorrect.out', None, False)
+     eq_di = Test_instance('eq_di.py', test_file_prefix + 'eq_di_example.dat', test_file_prefix + 'eq_di_results_new.out', test_file_prefix + 'eq_di_results_correct.out', test_file_prefix + 'eq_di_results_incorrect.out', None, False)
      eq_di.file_in_file_out_sequence()
 
 def complete_gobing_test():
      """test gobing.py"""
-     gobing = Test_instance('gobing.py', 'gobing_example.out', 'gobing_results_new.out', 'gobing_results_correct.out', 'gobing_results_incorrect.out', None, False)
+     gobing = Test_instance('gobing.py', test_file_prefix + 'gobing_example.out', test_file_prefix + 'gobing_results_new.out', test_file_prefix + 'gobing_results_correct.out', test_file_prefix + 'gobing_results_incorrect.out', None, False)
      gobing.file_in_file_out_sequence()
 
 def complete_gofish_test():
      """test gofish.py"""
-     gofish = Test_instance('gofish.py', 'gofish_example.out', 'gofish_results_new.out', 'gofish_results_correct.out', 'gofish_results_incorrect.out', None, False)
+     gofish = Test_instance('gofish.py', test_file_prefix + 'gofish_example.out', test_file_prefix + 'gofish_results_new.out', test_file_prefix + 'gofish_results_correct.out', test_file_prefix + 'gofish_results_incorrect.out', None, False)
      gofish.file_in_file_out_sequence()
 
 def complete_gokent_test():
      """test gokent.py"""
-     gokent = Test_instance('gokent.py', 'gokent_example.out', 'gokent_results_new.out', 'gokent_results_correct.out', 'gokent_results_incorrect.out', None, False)
+     gokent = Test_instance('gokent.py', test_file_prefix + 'gokent_example.out', test_file_prefix + 'gokent_results_new.out', test_file_prefix + 'gokent_results_correct.out', test_file_prefix + 'gokent_results_incorrect.out', None, False)
      gokent.file_in_file_out_sequence()
     # no interactive  
 
 def complete_goprinc_test():
      """test go_princ.py"""
-     goprinc = Test_instance('goprinc.py', 'goprinc_example.dat', 'goprinc_results_new.out', 'goprinc_results_correct.out', 'goprinc_results_incorrect.out', None, False)
+     goprinc = Test_instance('goprinc.py', test_file_prefix + 'goprinc_example.dat', test_file_prefix + 'goprinc_results_new.out', test_file_prefix + 'goprinc_results_correct.out', test_file_prefix + 'goprinc_results_incorrect.out', None, False)
      goprinc.file_in_file_out_sequence()
 
 def complete_igrf_test(): # runs as file in, file out, but then also with alternative command line options
      """test igrf.py"""
      raise Exception('small change in output files.  someone else must debug')
-     igrf = Test_instance('igrf.py', 'igrf_example.dat', 'igrf_results_new.out', 'igrf_results_correct.out', 'igrf_results_incorrect.out', None, False)
+     igrf = Test_instance('igrf.py', test_file_prefix + 'igrf_example.dat', test_file_prefix + 'igrf_results_new.out', test_file_prefix + 'igrf_results_correct.out', test_file_prefix + 'igrf_results_incorrect.out', None, False)
      igrf.file_in_file_out_sequence(interactive=True)
      igrf.arg_0 = "-plt"
      igrf.arg_1 = "-alt"
@@ -680,57 +680,57 @@ def complete_igrf_test(): # runs as file in, file out, but then also with altern
 
 def complete_k15_s_test():
      """test k15.py"""
-     k15_s = Test_instance('k15_s.py', 'k15_s_example.dat', 'k15_s_results_new.out', 'k15_s_results_correct.out', 'k15_s_results_incorrect.out', None, False)
+     k15_s = Test_instance('k15_s.py', test_file_prefix + 'k15_s_example.dat', test_file_prefix + 'k15_s_results_new.out', test_file_prefix + 'k15_s_results_correct.out', test_file_prefix + 'k15_s_results_incorrect.out', None, False)
      # runs program with extra command line options, then makes sure it has different output than running it without those option
      k15_s.file_in_file_out_sequence()
      k15_s.arg_0 = '-crd'
      k15_s.arg_1 = 'g'
      k15_s.arg_2 = "t"
-     k15_s.outfile = file_prefix + 'k15_s_results_other_new.out'
+     k15_s.outfile = test_file_prefix + 'k15_s_results_other_new.out'
      k15_s.run_program(output_type="file")
      try:
-          k15_s.check_file_output(k15_s.outfile, 'k15_s_results_new.out')
+          k15_s.check_file_output(k15_s.outfile, test_file_prefix + 'k15_s_results_new.out')
      except NameError as er:
           print "Files were appropriately different"
-          print er
-          print type(er)
+          #print er
+          #print type(er)
   
 def complete_mk_redo_test():
      """test mk_redo.py"""
-     mk_redo = Test_instance('mk_redo.py', 'mk_redo_example.txt', 'mk_redo_results_new.out', 'mk_redo_results_correct.out', 'mk_redo_results_incorrect.out', None, True)
+     mk_redo = Test_instance('mk_redo.py', 'mk_redo_example.txt', 'mk_redo_results_new.out', test_file_prefix + 'mk_redo_results_correct.out',  test_file_prefix + 'mk_redo_results_incorrect.out', None, True)
      mk_redo.file_in_file_out_sequence()
 
 def complete_s_eigs_test():
      """test s_eigs.py"""
-     s_eigs = Test_instance('s_eigs.py', 's_eigs_example.dat', 's_eigs_results_new.out', 's_eigs_results_correct.out', 's_eigs_results_incorrect.out', None, False)
+     s_eigs = Test_instance('s_eigs.py', test_file_prefix + 's_eigs_example.dat', test_file_prefix + 's_eigs_results_new.out', test_file_prefix + 's_eigs_results_correct.out', test_file_prefix + 's_eigs_results_incorrect.out', None, False)
      s_eigs.file_in_file_out_sequence()
 
 def complete_s_geo_test():
      """test s_geo.py"""
-     s_geo = Test_instance('s_geo.py', 's_geo_example.dat', 's_geo_results_new.out', 's_geo_results_correct.out', 's_geo_results_incorrect.out', None, False)
+     s_geo = Test_instance('s_geo.py', test_file_prefix + 's_geo_example.dat', test_file_prefix + 's_geo_results_new.out', test_file_prefix + 's_geo_results_correct.out', test_file_prefix + 's_geo_results_incorrect.out', None, False)
      s_geo.file_in_file_out_sequence()
 
 def complete_s_tilt_test():
      """test s_tilt.py"""
-     s_tilt = Test_instance('s_tilt.py', 's_tilt_example.dat', 's_tilt_results_new.out', 's_tilt_results_correct.out', 's_tilt_results_incorrect.out', None, False)
+     s_tilt = Test_instance('s_tilt.py', test_file_prefix + 's_tilt_example.dat', test_file_prefix + 's_tilt_results_new.out', test_file_prefix + 's_tilt_results_correct.out', test_file_prefix + 's_tilt_results_incorrect.out', None, False)
      s_tilt.file_in_file_out_sequence()
 
 def complete_stats_test():
      """test stats.py"""
-     stats = Test_instance('stats.py', 'stats_example.dat', 'stats_results_new.out', 'stats_results_correct.out', 'stats_results_incorrect.out', None, False)
+     stats = Test_instance('stats.py', test_file_prefix + 'stats_example.dat', test_file_prefix + 'stats_results_new.out', test_file_prefix + 'stats_results_correct.out', test_file_prefix + 'stats_results_incorrect.out', None, False)
      stats.file_in_file_out_sequence()
 
 def complete_vdm_b_test():
      """test vdm_b.py"""
-     vdm_b = Test_instance('vdm_b.py', 'vdm_b_example.dat', 'vdm_b_results_new.out', 'vdm_b_results_correct.out', 'vdm_b_results_incorrect.out', None, False)
+     vdm_b = Test_instance('vdm_b.py', test_file_prefix + 'vdm_b_example.dat', test_file_prefix + 'vdm_b_results_new.out', test_file_prefix + 'vdm_b_results_correct.out', test_file_prefix + 'vdm_b_results_incorrect.out', None, False)
      vdm_b.file_in_file_out_sequence(interactive=True)
 
 def complete_vector_mean_test():
      """test vector_mean.py"""
-     infile = "vector_mean_example.dat"
-     outfile = "vector_mean_results_new.out"
-     reference = "vector_mean_results_correct.out"
-     wrong = "vector_mean_results_incorrect.out"
+     infile = test_file_prefix + "vector_mean_example.dat"
+     outfile = test_file_prefix + "vector_mean_results_new.out"
+     reference = test_file_prefix + "vector_mean_results_correct.out"
+     wrong = test_file_prefix + "vector_mean_results_incorrect.out"
      vector_mean = Test_instance('vector_mean.py', infile, outfile, reference, wrong, None, False)
      vector_mean.file_in_file_out_sequence()
 
@@ -738,11 +738,11 @@ def complete_vector_mean_test():
 
 # beginning of Plotting section
 
-ani_depthplot_infile = 'ani_depthplot_rmag_anisotropy.txt'
-ani_depthplot_outfile = None
-ani_depthplot_reference = "{'U1359A_ani-depthplot.svg': <FoundFile ./new-test-output:U1359A_ani-depthplot.svg>}"
-ani_depthplot_wrong = "No way"
-ani_depthplot_fsa = 'ani_depthplot_er_samples.txt'
+#ani_depthplot_infile = 'ani_depthplot_rmag_anisotropy.txt'
+#ani_depthplot_outfile = None
+#ani_depthplot_reference = "{'U1359A_ani-depthplot.svg': <FoundFile ./new-test-output:U1359A_ani-depthplot.svg>}"
+#ani_depthplot_wrong = "No way"
+#ani_depthplot_fsa = 'ani_depthplot_er_samples.txt'
 
 def complete_ani_depthplot_test():
      """test ani_depthplot.py"""
@@ -760,15 +760,6 @@ def complete_ani_depthplot_test():
      ani_depthplot = Test_instance('ani_depthplot.py', ani_depthplot_infile, ani_depthplot_outfile, ani_depthplot_reference, ani_depthplot_wrong, 'a', True, '-fsa', ani_depthplot_fsa, '-d', '1', '100')
      ani_depthplot.run_program()
    
-def weird_ani_depthplot_test(): # irregular..? why is this here??
-     """weird ani_depthplot_test"""
-     print "weird test"
-     try:
-          complete_ani_depthplot_test()
-     except:
-          print "exception raised"
-          obj = env.run('ani_depthplot.py', '-WD', directory, '-f', ani_depthplot_infile, '-f', ani_depthplot_outfile, '-fsa', ani_depthplot_fsa, stdin = 'a')
-          print obj.stdout
 
 def complete_basemap_magic_test():
      """test_basemap_magic.py"""
@@ -781,7 +772,7 @@ def complete_basemap_magic_test():
 
 def complete_biplot_magic_test():
      """test biplot_magic.py"""
-     biplot_magic_infile = 'biplot_magic_example.dat'
+     biplot_magic_infile = test_file_prefix + 'biplot_magic_example.dat'
      biplot_magic_outfile = None
      biplot_magic_reference = """LP-X  selected for X axis
 LT-AF-I  selected for Y axis
@@ -795,7 +786,7 @@ S[a]ve plots, [q]uit,  Return for next plot """
 
 def complete_chi_magic_test():
      """test chi_magic.py"""
-     chi_magic_infile = 'chi_magic_example.dat'
+     chi_magic_infile = test_file_prefix + 'chi_magic_example.dat'
      chi_magic_outfile = None
      chi_magic_reference = "{'IRM-OldBlue-1892_2.svg': <FoundFile ./new-test-output:IRM-OldBlue-1892_2.svg>, 'IRM-OldBlue-1892_3.svg': <FoundFile ./new-test-output:IRM-OldBlue-1892_3.svg>, 'IRM-OldBlue-1892_1.svg': <FoundFile ./new-test-output:IRM-OldBlue-1892_1.svg>}"
      chi_magic_wrong = "wrong"
@@ -804,16 +795,16 @@ def complete_chi_magic_test():
 
 def complete_common_mean_test(): # Irregular type: a little fanciness after the standard stuff
      """test common_mean.py"""
-     common_mean_infile = 'common_mean_ex_file1.dat'
+     common_mean_infile =  test_file_prefix + 'common_mean_ex_file1.dat'
      common_mean_outfile = None
      common_mean_reference = "{'CD_X.svg': <FoundFile ./new-test-output:CD_X.svg>, 'CD_Y.svg': <FoundFile ./new-test-output:CD_Y.svg>, 'CD_Z.svg': <FoundFile ./new-test-output:CD_Z.svg>}"
      common_mean_wrong = "wrong"
-     common_mean_f2 = file_prefix + 'common_mean_ex_file2.dat'
+     common_mean_f2 = test_file_prefix + 'common_mean_ex_file2.dat'
      common_mean = Test_instance('common_mean.py', common_mean_infile, common_mean_outfile, common_mean_reference, common_mean_wrong, 'a', False, '-f2', common_mean_f2)
      common_mean.plot_program_sequence(stdout=False)
      # testing with -dir option
      common_mean_2 = Test_instance('common_mean.py', common_mean_infile, common_mean_outfile, common_mean_reference, common_mean_wrong, 'a', False, '-dir', '0', '9.9')
-     obj = env.run('common_mean.py', '-f', file_prefix + common_mean_infile, '-f2', common_mean_f2, stdin='a')
+     obj = env.run('common_mean.py', '-f', common_mean_infile, '-f2', common_mean_f2, stdin='a')
      if obj.files_updated:
           print "Successfully updated file"
      else:
@@ -840,7 +831,7 @@ def complete_dayplot_magic_test():
 
 def complete_dmag_magic_test():
      """test dmag_magic.py"""
-     dmag_magic_infile = 'dmag_magic_example.dat'
+     dmag_magic_infile =  test_file_prefix + 'dmag_magic_example.dat'
      dmag_magic_outfile = None
      dmag_magic_reference = "{'McMurdo_LT-AF-Z.svg': <FoundFile ./new-test-output:McMurdo_LT-AF-Z.svg>}"
      dmag_magic_wrong = "wrong"
@@ -849,7 +840,7 @@ def complete_dmag_magic_test():
 
 def complete_eqarea_test():
      """test eqarea.py"""
-     eqarea_infile = 'eqarea_example.dat'
+     eqarea_infile =  test_file_prefix + 'eqarea_example.dat'
      eqarea_outfile = None
      eqarea_reference = "{'eq.svg': <FoundFile ./new-test-output:eq.svg>}"
      eqarea_wrong = "wrong"
@@ -858,7 +849,7 @@ def complete_eqarea_test():
 
 def complete_eqarea_ell_test():
      """test eqarea_ell.py"""
-     eqarea_ell_infile = 'eqarea_ell_example.dat'
+     eqarea_ell_infile =  test_file_prefix + 'eqarea_ell_example.dat'
      eqarea_ell_outfile = None
      eqarea_ell_reference = """Zdec   137.8
      Edec   235.4
@@ -876,12 +867,12 @@ def complete_eqarea_ell_test():
 
 def complete_fishqq_test(): # irregular type, because it produces a useful outfile as well as a plot
      """test fishqq.py"""
-     fishqq_infile = 'fishqq_example.dat'
-     fishqq_outfile = 'fishqq_results_new.out'
+     fishqq_infile =  test_file_prefix + 'fishqq_example.dat'
+     fishqq_outfile =  test_file_prefix + 'fishqq_results_new.out'
      fishqq_reference = "{'exp1.svg': <FoundFile ./new-test-output:exp1.svg>, 'unf1.svg': <FoundFile ./new-test-output:unf1.svg>}"
      # not sure why the order switched....
      new_fishqq_reference = "{'unf1.svg': <FoundFile ./new-test-output:unf1.svg>, 'exp1.svg': <FoundFile ./new-test-output:exp1.svg>}"  # sometimes this one is correct, sometimes the other.  huh.
-     fishqq_file_reference = 'fishqq_results_correct.out'
+     fishqq_file_reference =  test_file_prefix + 'fishqq_results_correct.out'
      fishqq_wrong = "wrong"
      fishqq = Test_instance('fishqq.py', fishqq_infile, fishqq_outfile, fishqq_reference, fishqq_wrong, 'a', False)
      fishqq.plot_program_sequence(stdout=False)
@@ -900,8 +891,8 @@ def complete_foldtest_magic_test():
 def complete_foldtest_test(): # irregular -- can't really check the outfile, because it is bootstrappy
      """test foldtest.py"""
      print"Testing foldtest.py"
-     foldtest_infile = 'foldtest_example.dat'
-     foldtest_outfile = 'foldtest_results_new.out'
+     foldtest_infile =  test_file_prefix + 'foldtest_example.dat'
+     foldtest_outfile =  test_file_prefix + 'foldtest_results_new.out'
      foldtest_reference = """{'foldtest_ge.svg': <FoundFile ./new-test-output:foldtest_ge.svg>, 'foldtest_st.svg': <FoundFile ./new-test-output:foldtest_st.svg>, 'foldtest_ta.svg': <FoundFile ./new-test-output:foldtest_ta.svg>}"""
      foldtest_wrong = "wrong"
      foldtest = Test_instance('foldtest.py', foldtest_infile, foldtest_outfile, foldtest_reference, foldtest_wrong, 'a', False, '-n', 50, '-u', 30)
@@ -910,7 +901,7 @@ def complete_foldtest_test(): # irregular -- can't really check the outfile, bec
 def complete_histplot_test():
      """test histplot.py"""
      print"Testing histplot.py"
-     histplot_infile = 'extra_histplot_sample.out'
+     histplot_infile =  test_file_prefix + 'extra_histplot_sample.out'
      histplot_outfile = None
      histplot_reference = "{'hist.svg': <FoundFile ./new-test-output:hist.svg>}"
      histplot_wrong = "wrong"
@@ -920,7 +911,7 @@ def complete_histplot_test():
 def complete_irmaq_magic_test():
      """test irmaq_magic.py"""
      print"Testing irmaq_magic.py"
-     irmaq_magic_infile = 'irmaq_magic_measurements.txt'
+     irmaq_magic_infile =  'irmaq_magic_measurements.txt'
      irmaq_magic_outfile = None
      irmaq_magic_reference = "{'U1359A_LP-IRM.svg': <FoundFile ./new-test-output:U1359A_LP-IRM.svg>}"
      irmaq_magic_wrong = 8
@@ -933,12 +924,11 @@ def complete_lnp_magic_test(): # irregular type.  it had to be written the long 
      print"Testing lnp_magic.py"
      lnp_magic_infile = 'lnp_magic_pmag_specimens.txt'
      lnp_magic_outfile = None
-     lnp_magic_reference = PT.file_parse_by_word(file_prefix + 'lnp_magic_output_correct.txt')
+     lnp_magic_reference = PT.file_parse_by_word(test_file_prefix + 'lnp_magic_output_correct.txt')
      lnp_magic_wrong = ['sv01', 'Site', 'lines', 'planes', 'kappa', 'a95', 'dec', 'I am not right']
      lnp_magic = Test_instance('lnp_magic.py', lnp_magic_infile, lnp_magic_outfile, lnp_magic_reference, lnp_magic_wrong, None, True, '-crd', 'g', '-P')
      #raise NameError("-F option doesn't work")
-     lnp_magic.run_program()
-     obj = env.run('lnp_magic.py', '-WD', directory, '-f', 'lnp_magic_pmag_specimens.txt', '-crd', 'g', '-P')
+     obj = env.run(file_prefix + 'lnp_magic.py', '-WD', test_directory, '-f', 'lnp_magic_pmag_specimens.txt', '-crd', 'g', '-P')
      result = str(obj.stdout).split()
      lnp_magic.test_help()
      lnp_magic.check_list_output(result, lnp_magic.ref_out)
@@ -947,7 +937,7 @@ def complete_lnp_magic_test(): # irregular type.  it had to be written the long 
 def complete_lowrie_test():
      """test lowrie.py"""
      print "Testing lowrie.py"
-     lowrie_infile = 'lowrie_example.dat'
+     lowrie_infile = test_file_prefix + 'lowrie_example.dat'
      lowrie_outfile = None
      lowrie_reference = """318-U1359A-002H-1-W-109
 S[a]ve figure? [q]uit, <return> to continue"""
@@ -970,7 +960,7 @@ def complete_plot_cdf_test():
      """test plot_cdf.py"""
      PT.clean_house() 
      print"Testing plot_cdf.py"
-     infile =  "plot_cdf_example.dat"
+     infile =  test_file_prefix + "plot_cdf_example.dat"
      outfile = None
      reference = "{'CDF_.svg': <FoundFile ./new-test-output:CDF_.svg>}"
      wrong = "Not right"
@@ -980,7 +970,7 @@ def complete_plot_cdf_test():
 def complete_plotdi_a_test():
      """test plotdi_a.py"""
      print "Testing plotdi_a.py"
-     plotdi_a_infile = "plotdi_a_example.dat"
+     plotdi_a_infile =  test_file_prefix + "plotdi_a_example.dat"
      plotdi_a_outfile = None
      plotdi_a_reference = "{'eq.svg': <FoundFile ./new-test-output:eq.svg>}"
      plotdi_a_wrong = ['1', 'one']
@@ -989,7 +979,7 @@ def complete_plotdi_a_test():
 
 def complete_plotxy_test():
      """test_plotXY.py"""
-     plotxy_infile = 'plotxy_example.dat'
+     plotxy_infile =  test_file_prefix + 'plotxy_example.dat'
      plotxy_outfile = None
      plotxy_reference = "{'plotXY.svg': <FoundFile ./new-test-output:plotXY.svg>}"
      plotxy_wrong = ["something", 2]
@@ -998,7 +988,7 @@ def complete_plotxy_test():
 
 def complete_qqplot_test():  # irregular type.  produces a lot of output, which is then parsed out.  
      """test qqplot.py"""
-     qqplot_infile = "qqplot_example.dat"
+     qqplot_infile =  test_file_prefix + "qqplot_example.dat"
      qqplot_outfile = None
      qqplot_reference_output = [10.12243251, 2.79670530387, 0.0558584072909, 0.0886]
      qqplot_wrong_output = [10.12243251, 2., 0., 0.]
@@ -1023,7 +1013,7 @@ def complete_qqplot_test():  # irregular type.  produces a lot of output, which 
 
 def complete_quick_hyst_test():
      """test quick_hyst.py"""
-     quick_hyst_infile = 'quick_hyst_example.dat'
+     quick_hyst_infile =  'quick_hyst_example.dat'
      quick_hyst_outfile = None
      quick_hyst_reference = """IS06a-1 1 out of  8
 working on t:  273
@@ -1035,7 +1025,7 @@ S[a]ve plots, [s]pecimen name, [q]uit, <return> to continue
 
 def complete_revtest_test():
      """test revtest.py"""
-     revtest_infile = 'revtest_example.dat'
+     revtest_infile = test_file_prefix + 'revtest_example.dat'
      revtest_outfile = None
      revtest_reference = "{'REV_Z.svg': <FoundFile ./new-test-output:REV_Z.svg>, 'REV_Y.svg': <FoundFile ./new-test-output:REV_Y.svg>, 'REV_X.svg': <FoundFile ./new-test-output:REV_X.svg>}"
      revtest_wrong = "not right"
@@ -1085,8 +1075,8 @@ def complete_strip_magic_test():
      
 def complete_thellier_magic_test(): # Irregular
      """test thellier_magic.py"""
-     thellier_magic_infile = 'thellier_magic_measurements.txt'
-     thellier_magic_reference = PT.file_parse_by_word('thellier_magic_output_correct.out')# this is in a file because it is irritatingly long to keep in the document.  
+     thellier_magic_infile = test_file_prefix + 'thellier_magic_measurements.txt'
+     thellier_magic_reference = PT.file_parse_by_word(test_file_prefix + 'thellier_magic_output_correct.out')# this is in a file because it is irritatingly long to keep in the document.  
      print thellier_magic_reference
      thellier_magic_outfile = None
      thellier_magic_wrong = "wrong"
@@ -1143,8 +1133,8 @@ def complete_zeq_magic_redo_test(): # file type
      """test zeq_magic_redo.py"""
      zeq_redo_infile = 'zeq_magic_redo_measurements.txt'
      zeq_redo_outfile = 'zeq_magic_redo_results_new.out'
-     zeq_redo_reference = 'zeq_magic_redo_results_correct.out'
-     zeq_redo_wrong = 'zeq_magic_redo_results_incorrect.out'
+     zeq_redo_reference = test_file_prefix + 'zeq_magic_redo_results_correct.out'
+     zeq_redo_wrong = test_file_prefix + 'zeq_magic_redo_results_incorrect.out'
      fre =  'zeq_magic_redo'
      fsa =  'zeq_magic_redo_er_samples.txt'
      zeq_magic_redo = Test_instance('zeq_magic_redo.py', zeq_redo_infile, zeq_redo_outfile, zeq_redo_reference, zeq_redo_wrong, None, True, '-fre', fre, '-fsa', fsa)
@@ -1153,20 +1143,20 @@ def complete_zeq_magic_redo_test(): # file type
 
 def complete_upload_magic_test(): # irregular.  must be tested in a different directory. 
      """test upload_magic.py"""
-     obj = env.run("upload_magic.py", cwd=directory + "/upload_magic") # cwd allows specifying a directory other than the one you are in
-     reference = "upload_magic/correct_upload.txt"
-     wrong = "upload_magic/incorrect_upload.txt"
+     obj = env.run("upload_magic.py", cwd = test_directory + "/upload_magic") # cwd allows specifying a directory other than the one you are in
+     reference = test_file_prefix + "upload_magic/correct_upload.txt"
+     wrong = test_file_prefix + "upload_magic/incorrect_upload.txt"
      upload_magic = Test_instance("upload_magic.py", None, None, reference, wrong, None, False)
      print obj.stdout
      upload_magic.test_help()
-     upload_magic.check_file_output(file_prefix + "upload_magic/upload.txt", upload_magic.ref_out)
+     upload_magic.check_file_output(test_file_prefix + "upload_magic/upload.txt", upload_magic.ref_out)
      subprocess.call(['rm', 'upload_magic/upload.txt'])
 
 def complete_make_magic_plots_test(): # irregular -- runs in a different directory, specified by cwd
      """test make_magic_plots.py"""
-     obj = env.run("make_magic_plots.py", cwd=directory + "/make_magic_plots_example")
+     obj = env.run("make_magic_plots.py", cwd=test_directory + "/make_magic_plots_example")
      print obj.stdout
-     correctfile = file_prefix + "make_magic_plots_output_correct.txt"
+     correctfile = test_file_prefix + "make_magic_plots_output_correct.txt"
      results = PT.output_parse(obj.stdout)
      results_clean = PT.pmagpy_strip(results)
      reference = PT.file_parse_by_word_and_pmagpy_strip(correctfile)
@@ -1176,10 +1166,10 @@ def complete_make_magic_plots_test(): # irregular -- runs in a different directo
 def complete_convert2unix_test(): # irregular
      """test convert2unix.py"""
      obj = env.run("convert2unix.py", "-h")
-     stat1 = subprocess.check_output('stat convert2unix_example.dat', shell=True)
+     stat1 = subprocess.check_output('stat Command_line_Tests/convert2unix_example.dat', shell=True)
      print "stat1:  ", stat1
-     obj = env.run("convert2unix.py", file_prefix + "convert2unix_example.dat")
-     stat2 = subprocess.check_output('stat convert2unix_example.dat', shell=True)
+     obj = env.run("convert2unix.py", test_file_prefix + "convert2unix_example.dat")
+     stat2 = subprocess.check_output('stat Command_line_Tests/convert2unix_example.dat', shell=True)
      print "stat2: ", stat2
      if str(stat1) == str(stat2):
           print "convert2unix did not affect target file"
@@ -1187,43 +1177,43 @@ def complete_convert2unix_test(): # irregular
      else:
           print "convert2unix works!"
 
-def complete_curie_test(): # NOT DONE
+def complete_curie_test(): 
      """test curie.py"""
      reference = """second deriative maximum is at T=205
  S[a]ve to save plot, [q]uit, Return to continue:  4  saved in  Curie.svg
 3  saved in  der2.svg
 2  saved in  der1.svg
 1  saved in  M_T.svg"""
-     curie = Test_instance('curie.py', 'curie_example.dat', 'curie_results_new.out', reference, 'curie_results_incorrect.txt', 'a', False)
+     curie = Test_instance('curie.py', test_file_prefix + 'curie_example.dat', test_file_prefix + 'curie_results_new.out', reference, test_file_prefix + 'curie_results_incorrect.txt', 'a', False)
      curie.plot_program_sequence()
      
-def complete_plot_magic_keys_test(): # not done --- no way of saving the plot : (
+def complete_plot_magic_keys_test(): 
      """test plot_magic_keys.py"""     
      infile = "plot_magic_keys_example.dat"
      outfile = None
      reference = "{'fig.svg': <FoundFile ./new-test-output:fig.svg>}"
      wrong = "wrong"
+     print 'infile', infile
      plot_magic_keys = Test_instance('plot_magic_keys.py', infile, outfile, reference, wrong, 'a', True, '-xkey', 'average_age', '-ykey', 'average_age_sigma')
-     plot_magic_keys.run_program()
      plot_magic_keys.plot_program_sequence(stdout=False)
+
 
 def complete_measurements_normalize_test(): 
      """test measurements_normalize_test.py"""
      infile = 'measurements_normalize_example.dat'
      outfile = 'measurements_normalize_output_new.out' 
-     reference = 'measurements_normalize_output_correct.out'
-     wrong = 'measurements_normalize_output_incorrect.out'
+     reference = test_file_prefix + 'measurements_normalize_output_correct.out'
+     wrong = test_file_prefix + 'measurements_normalize_output_incorrect.out'
      fsp = 'measurements_normalize_specimens_weight.txt'
      measurements_normalize = Test_instance('measurements_normalize.py', infile, outfile, reference, wrong, None, True, '-fsp', fsp)
      measurements_normalize.file_in_file_out_sequence()
-#measurements_normalize.py -f measurements_normalize_example.dat -fsp measurements_normalize_specimens_weight.txt -F measurements_normalize_output_new.out 
 
 def complete_s_magic_test():
      """test s_magic.py"""
      infile = 's_magic_example.dat'
      outfile = 's_magic_results_new.out'
-     reference = 's_magic_results_correct.out'
-     wrong = 's_magic_results_incorrect.out'
+     reference = test_file_prefix + 's_magic_results_correct.out'
+     wrong = test_file_prefix + 's_magic_results_incorrect.out'
      s_magic = Test_instance('s_magic.py', infile, outfile, reference, wrong, None, True, '-loc', 'Camelot', '-usr', 'Merlin')
      s_magic.file_in_file_out_sequence()
 #s_magic.py -f s_magic_example.dat -F s_magic_results_new.out -loc Camelot -usr Merlin
@@ -1234,23 +1224,23 @@ def complete_agm_magic_test(): # a little irregular
      """test agm_magic.py"""
      agm_magic_infile = 'agm_magic_example.agm'
      agm_magic_outfile = 'agm_magic_output_new.out'
-     agm_magic_reference = 'agm_magic_output_correct.out'
-     agm_magic_wrong = 'agm_magic_output_incorrect.out'
+     agm_magic_reference = test_file_prefix + 'agm_magic_output_correct.out'
+     agm_magic_wrong = test_file_prefix + 'agm_magic_output_incorrect.out'
      agm = Test_instance('agm_magic.py', agm_magic_infile, agm_magic_outfile, agm_magic_reference, agm_magic_wrong, None, True, '-spn', 'myspec', '--usr', "Lima Tango", '-u', 'cgs')
      agm.file_in_file_out_sequence()
      extra_infile = 'agm_magic_example.irm'
      extra_outfile = 'agm_magic_irm_output_new.out'
-     extra_reference = 'agm_magic_extra_output_correct.out'
-     extra_wrong = 'agm_magic_extra_output_incorrect.out'
+     extra_reference = test_file_prefix + 'agm_magic_extra_output_correct.out'
+     extra_wrong = test_file_prefix + 'agm_magic_extra_output_incorrect.out'
      extra_agm = Test_instance('agm_magic.py', extra_infile, extra_outfile, extra_reference, extra_wrong, None, True, '-spn', 'myspec', '--usr', "Lima Tango", '-bak')
      extra_agm.file_in_file_out_sequence()
 
 def complete_LDEO_magic_test():
      """test LDEO_magic.py"""
-     infile = 'ldeo_magic_example.dat'
-     outfile = 'ldeo_magic_measurements_new.out'
-     reference = 'ldeo_magic_measurements_correct.out'
-     wrong = 'ldeo_magic_measurements_incorrect.out'
+     infile = test_file_prefix + 'ldeo_magic_example.dat'
+     outfile = test_file_prefix + 'ldeo_magic_measurements_new.out'
+     reference = test_file_prefix + 'ldeo_magic_measurements_correct.out'
+     wrong = test_file_prefix + 'ldeo_magic_measurements_incorrect.out'
      ldeo_magic = Test_instance('ldeo_magic.py', infile, outfile, reference, wrong, None, False, '-LP', 'AF', '-loc', 'here')
 #     ldeo_magic.run_program()
      ldeo_magic.file_in_file_out_sequence()
@@ -1258,18 +1248,18 @@ def complete_LDEO_magic_test():
 
 def complete_sio_magic_test(): # regular-ish, but testing three different infiles.  last one is irregular -- too many command line args
      """test sio_magic.py"""
-     infile = "sio_af_example.dat"
-     outfile = "sio_af_measurements_new.out"
-     reference = "sio_af_measurements_correct.out"
-     wrong = "sio_af_measurements_incorrect.out"
+     infile = test_file_prefix + "sio_af_example.dat"
+     outfile = test_file_prefix + "sio_af_measurements_new.out"
+     reference = test_file_prefix + "sio_af_measurements_correct.out"
+     wrong = test_file_prefix + "sio_af_measurements_incorrect.out"
      sio_magic = Test_instance('sio_magic.py', infile, outfile, reference, wrong, None, False, '-LP', '-AF', '-spc', '1', '-loc', 'Socorro')
      sio_magic.file_in_file_out_sequence()
      # testing with different infile
-     sio_magic2 = Test_instance('sio_magic.py', 'sio_thermal_example.dat', 'sio_thermal_new.out', 'sio_thermal_correct.out', 'sio_thermal_incorrect.out', None, False, '-LP', '-T', '-spc', '1', '-loc', 'Socorro')
+     sio_magic2 = Test_instance('sio_magic.py', test_file_prefix + 'sio_thermal_example.dat', test_file_prefix + 'sio_thermal_new.out', test_file_prefix + 'sio_thermal_correct.out', test_file_prefix + 'sio_thermal_incorrect.out', None, False, '-LP', '-T', '-spc', '1', '-loc', 'Socorro')
      sio_magic2.file_in_file_out_sequence()
      # last infile:
-     sio_magic3 = Test_instance('sio_magic.py', 'sio_thellier_example.dat', 'sio_thellier_new.out', 'sio_thellier_correct.out', 'sio_thellier_incorrect.out', None, False)
-     obj = env.run('sio_magic.py', '-f', sio_magic3.infile, '-F', sio_magic3.outfile, "-LP", "T", "-spc", "1", "-loc", "Socorro", "-dcg", "25", "0", "90")
+     sio_magic3 = Test_instance('sio_magic.py', test_file_prefix + 'sio_thellier_example.dat', test_file_prefix + 'sio_thellier_new.out', test_file_prefix + 'sio_thellier_correct.out', test_file_prefix + 'sio_thellier_incorrect.out', None, False)
+     obj = env.run(file_prefix + 'sio_magic.py', '-f', sio_magic3.infile, '-F', sio_magic3.outfile, "-LP", "T", "-spc", "1", "-loc", "Socorro", "-dcg", "25", "0", "90")
      sio_magic3.check_file_output(sio_magic3.outfile, sio_magic3.ref_out)
      sio_magic3.unittest_file()
 #% sio_magic.py -f sio_thellier_example.dat -F  thellier_measurements.txt  \  
@@ -1277,20 +1267,20 @@ def complete_sio_magic_test(): # regular-ish, but testing three different infile
 
 def complete_TDT_magic_test():
      """test tdt_magic.py"""
-     infile = 'tdt_magic_example.dat'
-     outfile = 'tdt_out_new.out'
-     reference = 'tdt_out_correct.out'
-     wrong = 'tdt_out_incorrect.out'
+     infile = test_file_prefix + 'tdt_magic_example.dat'
+     outfile = test_file_prefix + 'tdt_out_new.out'
+     reference = test_file_prefix + 'tdt_out_correct.out'
+     wrong = test_file_prefix + 'tdt_out_incorrect.out'
      raise Exception('TDT_magic pull up gui window and can not be tested')
      tdt_magic = Test_instance('TDT_magic.py', infile, outfile, reference, wrong, None, False, '-loc', 'TEST', '-dc', '50.12', '0', '0')
      tdt_magic.file_in_file_out_sequence()
 
 def complete_HUJI_magic_test():
      """test HUJI_magic.py"""
-     infile = 'HUJI_magic_example.dat'
-     outfile = 'HUJI_magic_new.out'
-     reference = 'HUJI_magic_correct.out'
-     wrong = 'HUJI_magic_incorrect.out'
+     infile = test_file_prefix + 'HUJI_magic_example.dat'
+     outfile = test_file_prefix + 'HUJI_magic_new.out'
+     reference = test_file_prefix + 'HUJI_magic_correct.out'
+     wrong = test_file_prefix + 'HUJI_magic_incorrect.out'
      raise NameError('initializing variables were removed')
      HUJI_magic = Test_instance('HUJI_magic.py', infile, outfile, reference, wrong, None, False, '-LP', 'AF')
      HUJI_magic.file_in_file_out_sequence()
@@ -1349,11 +1339,10 @@ def complete_working_test():
      complete_zeq_magic_redo_test()
      #PLOTTING
      complete_ani_depthplot_test()
-#     weird_ani_depthplot_test()
      complete_basemap_magic_test()
      complete_biplot_magic_test()
-     complete_chi_magic_test()  # probs working
-     complete_common_mean_test() # same
+     complete_chi_magic_test()  
+     complete_common_mean_test() 
      complete_core_depthplot_test()
      complete_dayplot_magic_test()
      complete_dmag_magic_test()
@@ -1393,7 +1382,7 @@ def complete_working_test():
      complete_TDT_magic_test()
      complete_HUJI_magic_test()
 
-rename_me_tests = {"angle": complete_angle_test, "zeq": complete_zeq_test, "chartmaker": complete_chartmaker_test, "di_eq": complete_di_eq_test, "azdip_magic": complete_azdip_magic_test, "combine_magic": complete_combine_magic_test, "cont_rot": complete_cont_rot_test, "customize_criteria": complete_customize_criteria_test, "download_magic": complete_download_magic_test, "dipole_pinc": complete_dipole_pinc_test, "dipole_plat": complete_dipole_plat_test, "grab_magic_key": complete_grab_magic_key_test, "incfish": complete_incfish_test, "magic_select": complete_magic_select_test, "nrm_specimens_magic": complete_nrm_specimens_magic_test, "sundec": complete_sundec_test, "pca": complete_pca_test, "scalc": complete_scalc_test, "scalc_magic": complete_scalc_magic_test, "vgp_di": complete_vgp_di_test, "watsonsF": complete_watsonsF_test, "apwp": complete_apwp_test, "b_vdm": complete_b_vdm_test, "cart_dir": complete_cart_dir_test, "convert_samples": complete_convert_samples_test, "di_geo": complete_di_geo_test, "di_tilt": complete_di_tilt_test, "dir_cart": complete_dir_cart_test, "di_rot": complete_di_rot_test, "di_vgp": complete_di_vgp_test, "eigs_s": complete_eigs_s_test, "eq_di": complete_eq_di_test, "gobing": complete_gobing_test, "gofish": complete_gofish_test, "gokent": complete_gokent_test, "goprinc": complete_goprinc_test, "igrf": complete_igrf_test, "k15_s": complete_k15_s_test, "mk_redo": complete_mk_redo_test, "pt_rot": complete_pt_rot_test, "s_eigs": complete_s_eigs_test, "s_geo": complete_s_geo_test, "s_tilt": complete_s_tilt_test, "stats": complete_stats_test, "vdm_b": complete_vdm_b_test, "vector_mean": complete_vector_mean_test, "zeq_magic": complete_zeq_magic_redo_test, "ani_depthplot": complete_ani_depthplot_test, "weird_ani_depthplot": weird_ani_depthplot_test, "basemap_magic": complete_basemap_magic_test, "biplot_magic": complete_biplot_magic_test, "chi_magic": complete_chi_magic_test, "common_mean": complete_common_mean_test, "core_depthplot": complete_core_depthplot_test, "dayplot_magic": complete_dayplot_magic_test, "dmag_magic": complete_dmag_magic_test, "eqarea": complete_eqarea_test, "eqarea_ell": complete_eqarea_ell_test, "fishqq": complete_fishqq_test, "foldtest_magic": complete_foldtest_magic_test, "foldtest": complete_foldtest_test, "histplot": complete_histplot_test, "irmaq_magic": complete_irmaq_magic_test, "lnp_magic": complete_lnp_magic_test, "lowrie": complete_lowrie_test, "lowrie_magic": complete_lowrie_magic_test, "plot_cdf": complete_plot_cdf_test, "plotdi_a": complete_plotdi_a_test, "plotxy": complete_plotxy_test, "qqplot": complete_qqplot_test, "quick_hyst": complete_quick_hyst_test, "revtest": complete_revtest_test, "revtest_magic": complete_revtest_magic_test, "site_edit_magic": complete_site_edit_magic_test, "strip_magic": complete_strip_magic_test, "s_hext": complete_s_hext_test, "thellier_magic": complete_thellier_magic_test, "vgpmap_magic": complete_vgpmap_magic_test, "zeq_magic": complete_zeq_magic_test, "agm_magic": complete_agm_magic_test, "upload_magic": complete_upload_magic_test, "make_magic_plots": complete_make_magic_plots_test,"convert2unix": complete_convert2unix_test, "curie": complete_curie_test, "plot_magic_keys": complete_plot_magic_keys_test, "measurements_normalize": complete_measurements_normalize_test, "s_magic": complete_s_magic_test, "ldeo_magic": complete_LDEO_magic_test, "sio_magic": complete_sio_magic_test, "TDT_magic": complete_TDT_magic_test, "HUJI_magic": complete_HUJI_magic_test}
+rename_me_tests = {"angle": complete_angle_test, "zeq": complete_zeq_test, "chartmaker": complete_chartmaker_test, "di_eq": complete_di_eq_test, "azdip_magic": complete_azdip_magic_test, "combine_magic": complete_combine_magic_test, "cont_rot": complete_cont_rot_test, "customize_criteria": complete_customize_criteria_test, "download_magic": complete_download_magic_test, "dipole_pinc": complete_dipole_pinc_test, "dipole_plat": complete_dipole_plat_test, "grab_magic_key": complete_grab_magic_key_test, "incfish": complete_incfish_test, "magic_select": complete_magic_select_test, "nrm_specimens_magic": complete_nrm_specimens_magic_test, "sundec": complete_sundec_test, "pca": complete_pca_test, "scalc": complete_scalc_test, "scalc_magic": complete_scalc_magic_test, "vgp_di": complete_vgp_di_test, "watsonsF": complete_watsonsF_test, "apwp": complete_apwp_test, "b_vdm": complete_b_vdm_test, "cart_dir": complete_cart_dir_test, "convert_samples": complete_convert_samples_test, "di_geo": complete_di_geo_test, "di_tilt": complete_di_tilt_test, "dir_cart": complete_dir_cart_test, "di_rot": complete_di_rot_test, "di_vgp": complete_di_vgp_test, "eigs_s": complete_eigs_s_test, "eq_di": complete_eq_di_test, "gobing": complete_gobing_test, "gofish": complete_gofish_test, "gokent": complete_gokent_test, "goprinc": complete_goprinc_test, "igrf": complete_igrf_test, "k15_s": complete_k15_s_test, "mk_redo": complete_mk_redo_test, "pt_rot": complete_pt_rot_test, "s_eigs": complete_s_eigs_test, "s_geo": complete_s_geo_test, "s_tilt": complete_s_tilt_test, "stats": complete_stats_test, "vdm_b": complete_vdm_b_test, "vector_mean": complete_vector_mean_test, "zeq_magic_redo": complete_zeq_magic_redo_test, "ani_depthplot": complete_ani_depthplot_test, "basemap_magic": complete_basemap_magic_test, "biplot_magic": complete_biplot_magic_test, "chi_magic": complete_chi_magic_test, "common_mean": complete_common_mean_test, "core_depthplot": complete_core_depthplot_test, "dayplot_magic": complete_dayplot_magic_test, "dmag_magic": complete_dmag_magic_test, "eqarea": complete_eqarea_test, "eqarea_ell": complete_eqarea_ell_test, "fishqq": complete_fishqq_test, "foldtest_magic": complete_foldtest_magic_test, "foldtest": complete_foldtest_test, "histplot": complete_histplot_test, "irmaq_magic": complete_irmaq_magic_test, "lnp_magic": complete_lnp_magic_test, "lowrie": complete_lowrie_test, "lowrie_magic": complete_lowrie_magic_test, "plot_cdf": complete_plot_cdf_test, "plotdi_a": complete_plotdi_a_test, "plotxy": complete_plotxy_test, "qqplot": complete_qqplot_test, "quick_hyst": complete_quick_hyst_test, "revtest": complete_revtest_test, "revtest_magic": complete_revtest_magic_test, "site_edit_magic": complete_site_edit_magic_test, "strip_magic": complete_strip_magic_test, "s_hext": complete_s_hext_test, "thellier_magic": complete_thellier_magic_test, "vgpmap_magic": complete_vgpmap_magic_test, "zeq_magic": complete_zeq_magic_test, "agm_magic": complete_agm_magic_test, "upload_magic": complete_upload_magic_test, "make_magic_plots": complete_make_magic_plots_test,"convert2unix": complete_convert2unix_test, "curie": complete_curie_test, "plot_magic_keys": complete_plot_magic_keys_test, "measurements_normalize": complete_measurements_normalize_test, "s_magic": complete_s_magic_test, "ldeo_magic": complete_LDEO_magic_test, "sio_magic": complete_sio_magic_test, "TDT_magic": complete_TDT_magic_test, "HUJI_magic": complete_HUJI_magic_test}
 
 rename_me_errors_list = open('rename_me_errors_list.txt', 'w')
 
