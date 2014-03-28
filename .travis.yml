@@ -15,10 +15,8 @@ virtualenv:
     system_site_packages: true
 install: 
     - pip install scripttest
-#    - pip install python-tk # error
-#    - pip install tkinter # causes an error
 # command to run tests, e.g. python setup.py test
 script:  
     - python Command_line_Tests/fake_test.py 
-    - python Command_line_Tests/Rename_me.py -r lowrie
+    - python Command_line_Tests/Rename_me.py
     #- python -m unittest discover
