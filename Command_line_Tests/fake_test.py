@@ -11,8 +11,9 @@ env = TestFileEnvironment('./new-test-output')
 import unittest
 
 import Tkinter
-Tkinter._test()
+#Tkinter._test()
 
+print 'tested tkinter'
 
 try:
     import numpy
