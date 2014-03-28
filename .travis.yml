@@ -4,6 +4,9 @@ python:
 #  - "2.6" # fails because of discover
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 before_install:
+    - echo $DISPLAY
+    - export DISPLAY=unix:0.0
+    - echo $DISPLAY
     - sudo apt-get install python-scipy python-tk python-matplotlib
 virtualenv:
     system_site_packages: true
