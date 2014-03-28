@@ -5,7 +5,8 @@ python:
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 before_install:
     - echo $DISPLAY
-    - export DISPLAY=unix:0.0
+   # - export DISPLAY=unix:0.0
+    - export DISPLAY=localhost:0
     - echo $DISPLAY
     - sudo apt-get install python-scipy python-tk python-matplotlib
 virtualenv:
