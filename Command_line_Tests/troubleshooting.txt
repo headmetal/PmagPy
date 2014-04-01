@@ -48,13 +48,15 @@ IODP_csv_magic
         new output column was added
 
 
-finished rename_me.py tests
-
 
 package-a-fy pmagpy so you can call tests
              angle.py test works!
-             stuck on combine_magic test.  possibly take test_file_prefix out of __init__ and just have it in the actual functions.  in a way, this seems repetitive, but it drastically improved clarity for someone tinkering.  
 
              consider shortening log output
              also, consider changing framework for how tests are run, so that errors are actually raised
 
+
+travis progress:
+
+       'python Rename_me.py' -- works
+       

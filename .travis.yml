@@ -19,5 +19,6 @@ install:
 script:  
     - ./tester.sh
     - python Command_line_Tests/fake_test.py 
+    - python Command_line_Tests/Rename_me.py -r igrf
     #- python Command_line_Tests/Rename_me.py # works! but need to fix and figure out tests
     #- python -m unittest discover # works! but same
