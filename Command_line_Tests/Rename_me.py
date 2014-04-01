@@ -1395,6 +1395,8 @@ if __name__ == '__main__':
      else:
           new_list = EL.go_through(rename_me_tests, rename_me_errors_list)
           EL.redo_broken_ones(new_list)
+          if new_list:
+               raise Exception(new_list)
 
      
 # run as: python Rename_me.py > rename_me_full_output.txt
