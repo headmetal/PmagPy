@@ -59,4 +59,4 @@ package-a-fy pmagpy so you can call tests
 travis progress:
 
        'python Rename_me.py' -- works
-       
+       'python raise_exception.py' will cause the build to fail, however if that code is nested in a bash script, it will NOT cause the build to fail.  
