@@ -17,6 +17,7 @@ install:
     - pip install scripttest
 # command to run tests, e.g. python setup.py test
 script:  
+    - ./tester.sh
     - python Command_line_Tests/fake_test.py 
-    - python Command_line_Tests/Rename_me.py
-    #- python -m unittest discover
+    #- python Command_line_Tests/Rename_me.py # works! but need to fix and figure out tests
+    #- python -m unittest discover # works! but same

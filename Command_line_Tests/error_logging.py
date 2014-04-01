@@ -15,7 +15,7 @@ print "STARTING HERE"
 
 def go_through(programs_dict, errors_log): # args are: a dictionary of program names and the functions that test them, and the file to write errors to
     """Takes as arguments a dictionary with the structure: {'angle': complete_angle_test}, and a file to log the errors in.  It runs each program, then returns a list of programs that produced errors, and also writes the glitching programs and their error messages to the appropriate error log"""
-    errors_log.write(str(errors_log)[12:-28] + ':  ' + '\n')  
+    errors_log.write(str(errors_log)[12:-28] + ':  ' + '\n')
     PT.clean_house()
     redo_me = [] # will be a list of the functions to be redone
     errors_count = 0
