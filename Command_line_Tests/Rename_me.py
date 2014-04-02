@@ -334,7 +334,7 @@ def complete_combine_magic_test(): # irregular type.  this one is a weird amalga
      input_1 = 'combine_magic_input_1.dat'
      input_2 = 'combine_magic_input_2.dat'
     # have to run it specially, because -f takes two arguments.  it doesn't fit with its class in this regard. 
-     obj = env.run('combine_magic.py', '-WD', test_directory, '-F', output_file, '-f', input_1, input_2)
+     obj = env.run(file_prefix + 'combine_magic.py', '-WD', test_directory, '-F', output_file, '-f', input_1, input_2)
      combine_magic = Test_instance('combine_magic.py', None, output_file, reference_file, incorrect_output, None, True, '-f', input_1, input_2)
      combine_magic.check_file_output(test_file_prefix + combine_magic.outfile, combine_magic.ref_out)
      combine_magic.test_help()
@@ -344,7 +344,7 @@ def complete_combine_magic_test(): # irregular type.  this one is a weird amalga
 def complete_cont_rot_test(): # Irregular type -- running specially because it has so many command line options
      """test cont_rot.py"""
      print "running: cont_rot.py -con af:sam -prj ortho -eye -20 0 -sym k- 1 -age 180 -res l, stdin='a'"
-     obj = env.run('cont_rot.py', '-con', 'af:sam', '-prj', 'ortho', '-eye', '-20', '0', '-sym', 'k-', '1', '-age', '180', '-res', 'l', stdin='a')
+     obj = env.run(file_prefix + 'cont_rot.py', '-con', 'af:sam', '-prj', 'ortho', '-eye', '-20', '0', '-sym', 'k-', '1', '-age', '180', '-res', 'l', stdin='a')
      output = str(obj.files_created) # output is the name of the plot that has been saved
      print "stdout = " + str(obj.stdout)
      print "output file(s): " + str(output)
@@ -393,7 +393,7 @@ def complete_pt_rot_test(): # Irregular type.  has both an -ff and an -f option.
      pt_rot_wrong = test_file_prefix + 'pt_rot_results_incorrect.out'
      pt_rot = Test_instance('pt_rot.py', None, pt_rot_outfile, pt_rot_reference, pt_rot_wrong, None, True, '-ff', input_1, input_2)
      print "Testing pt_rot.py with -ff option"
-     obj = env.run('pt_rot.py', '-WD', test_directory, '-ff', input_1, input_2 , '-F', pt_rot_outfile)
+     obj = env.run(file_prefix + 'pt_rot.py', '-WD', test_directory, '-ff', input_1, input_2 , '-F', pt_rot_outfile)
      pt_rot.outfile = test_file_prefix + pt_rot.outfile # 
      print pt_rot.outfile
      print pt_rot.ref_out
@@ -592,7 +592,7 @@ def complete_convert_samples_test(): # irregular.  "-F" option does not work cor
      """test convert_samples.py"""
      subprocess.call('rm orient_Northern_Iceland.txt', shell=True)
      convert_samples = Test_instance('convert_samples.py', 'convert_samples_example.dat', "", test_file_prefix + 'convert_samples_results_correct.out', test_file_prefix + 'convert_samples_results_incorrect.out', None, True)
-     obj = env.run('convert_samples.py', '-f', 'convert_samples_example.dat', '-WD', directory, '-OD', directory)
+     obj = env.run(file_prefix + 'convert_samples.py', '-f', 'convert_samples_example.dat', '-WD', directory, '-OD', directory)
      print obj.stdout
      convert_samples.test_help()
      convert_samples.outfile = test_file_prefix + 'orient_Northern_Iceland.txt'
@@ -712,6 +712,7 @@ def complete_s_geo_test():
 
 def complete_s_tilt_test():
      """test s_tilt.py"""
+     # output now subtly different.  someone else must debug
      s_tilt = Test_instance('s_tilt.py', test_file_prefix + 's_tilt_example.dat', test_file_prefix + 's_tilt_results_new.out', test_file_prefix + 's_tilt_results_correct.out', test_file_prefix + 's_tilt_results_incorrect.out', None, False)
      s_tilt.file_in_file_out_sequence()
 
@@ -752,12 +753,12 @@ def complete_ani_depthplot_test():
      ani_depthplot_reference = "{'U1359A_ani-depthplot.svg': <FoundFile ./new-test-output:U1359A_ani-depthplot.svg>}"
      ani_depthplot_wrong = "No way"
      ani_depthplot_fsa = 'ani_depthplot_er_samples.txt'
-     ani_depthplot = Test_instance('ani_depthplot.py', ani_depthplot_infile, ani_depthplot_outfile, ani_depthplot_reference, ani_depthplot_wrong, 'a', True, '-fsa', ani_depthplot_fsa)
+     ani_depthplot = Test_instance('ANI_depthplot.py', ani_depthplot_infile, ani_depthplot_outfile, ani_depthplot_reference, ani_depthplot_wrong, 'a', True, '-fsa', ani_depthplot_fsa)
      ani_depthplot.plot_program_sequence(stdout=False)
      # testing extra options
-     ani_depthplot = Test_instance('ani_depthplot.py', ani_depthplot_infile, ani_depthplot_outfile, ani_depthplot_reference, ani_depthplot_wrong, 'a', True, '-fsa', ani_depthplot_fsa, '-ds', 'mcd', '-sav')
+     ani_depthplot = Test_instance('ANI_depthplot.py', ani_depthplot_infile, ani_depthplot_outfile, ani_depthplot_reference, ani_depthplot_wrong, 'a', True, '-fsa', ani_depthplot_fsa, '-ds', 'mcd', '-sav')
      ani_depthplot.run_program()
-     ani_depthplot = Test_instance('ani_depthplot.py', ani_depthplot_infile, ani_depthplot_outfile, ani_depthplot_reference, ani_depthplot_wrong, 'a', True, '-fsa', ani_depthplot_fsa, '-d', '1', '100')
+     ani_depthplot = Test_instance('ANI_depthplot.py', ani_depthplot_infile, ani_depthplot_outfile, ani_depthplot_reference, ani_depthplot_wrong, 'a', True, '-fsa', ani_depthplot_fsa, '-d', '1', '100')
      ani_depthplot.run_program()
    
 
@@ -804,7 +805,7 @@ def complete_common_mean_test(): # Irregular type: a little fanciness after the 
      common_mean.plot_program_sequence(stdout=False)
      # testing with -dir option
      common_mean_2 = Test_instance('common_mean.py', common_mean_infile, common_mean_outfile, common_mean_reference, common_mean_wrong, 'a', False, '-dir', '0', '9.9')
-     obj = env.run('common_mean.py', '-f', common_mean_infile, '-f2', common_mean_f2, stdin='a')
+     obj = env.run(file_prefix + 'common_mean.py', '-f', common_mean_infile, '-f2', common_mean_f2, stdin='a')
      if obj.files_updated:
           print "Successfully updated file"
      else:
@@ -818,6 +819,9 @@ def complete_core_depthplot_test():
      core_depthplot_wrong = "wrong"
      core_depthplot_fsa = 'core_depthplot_er_samples.txt'
      core_depthplot = Test_instance('core_depthplot.py', core_depthplot_infile, core_depthplot_outfile, core_depthplot_reference, core_depthplot_wrong, 'a', True, '-fsa', core_depthplot_fsa, '-LP', 'AF', '15')
+     obj = env.run(file_prefix + 'core_depthplot.py', '-h')
+     'run help manually, stdout:'
+     print obj.stdout
      core_depthplot.plot_program_sequence(stdout=False)
 
 def complete_dayplot_magic_test():
@@ -883,6 +887,7 @@ def complete_foldtest_magic_test():
      foldtest_magic_infile = 'foldtest_magic_example.txt'
      foldtest_magic_outfile = 'foldtest_magic_results_new.out'
      foldtest_magic_reference = "{'foldtest_ge.svg': <FoundFile ./new-test-output:foldtest_ge.svg>, 'foldtest_st.svg': <FoundFile ./new-test-output:foldtest_st.svg>, 'foldtest_ta.svg': <FoundFile ./new-test-output:foldtest_ta.svg>}"
+     foldtest_magic_reference = """{'foldtest_ge.svg': <FoundFile ./new-test-output:foldtest_ge.svg>, 'foldtest_ta.svg': <FoundFile ./new-test-output:foldtest_ta.svg>, 'foldtest_st.svg': <FoundFile ./new-test-output:foldtest_st.svg>}"""
      foldtest_magic_wrong = [1, 2, 3]
      foldtest_magic_fsa = 'foldtest_magic_er_samples.txt'
      foldtest_magic = Test_instance('foldtest_magic.py', foldtest_magic_infile, foldtest_magic_outfile, foldtest_magic_reference, foldtest_magic_wrong, 'a', True,  '-fsa', foldtest_magic_fsa, '-n', '100')
@@ -893,7 +898,7 @@ def complete_foldtest_test(): # irregular -- can't really check the outfile, bec
      print"Testing foldtest.py"
      foldtest_infile =  test_file_prefix + 'foldtest_example.dat'
      foldtest_outfile =  test_file_prefix + 'foldtest_results_new.out'
-     foldtest_reference = """{'foldtest_ge.svg': <FoundFile ./new-test-output:foldtest_ge.svg>, 'foldtest_st.svg': <FoundFile ./new-test-output:foldtest_st.svg>, 'foldtest_ta.svg': <FoundFile ./new-test-output:foldtest_ta.svg>}"""
+     foldtest_reference ="""{'foldtest_ge.svg': <FoundFile ./new-test-output:foldtest_ge.svg>, 'foldtest_ta.svg': <FoundFile ./new-test-output:foldtest_ta.svg>, 'foldtest_st.svg': <FoundFile ./new-test-output:foldtest_st.svg>}"""
      foldtest_wrong = "wrong"
      foldtest = Test_instance('foldtest.py', foldtest_infile, foldtest_outfile, foldtest_reference, foldtest_wrong, 'a', False, '-n', 50, '-u', 30)
      foldtest.plot_program_sequence(stdout=False)
@@ -1085,6 +1090,7 @@ def complete_thellier_magic_test(): # Irregular
 
 def complete_vgpmap_magic_test():
      """test vgpmap_magic.py"""
+     # basemap not importing correctly for travis
      vgpmap_magic_infile = 'vgpmap_magic_pmag_results.txt'
      vgpmap_magic_outfile = None
      vgpmap_magic_reference = "{'VGP_map.pdf': <FoundFile ./new-test-output:VGP_map.pdf>}"
@@ -1131,6 +1137,7 @@ def complete_zeq_magic_test(): # NOT SURE THIS IS ACTUALLY USEFUL.  Consider
 
 def complete_zeq_magic_redo_test(): # file type
      """test zeq_magic_redo.py"""
+     # messed up output, not sure why
      zeq_redo_infile = 'zeq_magic_redo_measurements.txt'
      zeq_redo_outfile = 'zeq_magic_redo_results_new.out'
      zeq_redo_reference = test_file_prefix + 'zeq_magic_redo_results_correct.out'
@@ -1143,7 +1150,7 @@ def complete_zeq_magic_redo_test(): # file type
 
 def complete_upload_magic_test(): # irregular.  must be tested in a different directory. 
      """test upload_magic.py"""
-     obj = env.run("upload_magic.py", cwd = test_directory + "/upload_magic") # cwd allows specifying a directory other than the one you are in
+     obj = env.run(file_prefix + "upload_magic.py", cwd = test_directory + "/upload_magic") # cwd allows specifying a directory other than the one you are in
      reference = test_file_prefix + "upload_magic/correct_upload.txt"
      wrong = test_file_prefix + "upload_magic/incorrect_upload.txt"
      upload_magic = Test_instance("upload_magic.py", None, None, reference, wrong, None, False)
@@ -1154,7 +1161,9 @@ def complete_upload_magic_test(): # irregular.  must be tested in a different di
 
 def complete_make_magic_plots_test(): # irregular -- runs in a different directory, specified by cwd
      """test make_magic_plots.py"""
-     obj = env.run("make_magic_plots.py", cwd=test_directory + "/make_magic_plots_example")
+     env.run(file_prefix + 'make_magic_plots.py', '-h')
+     #obj = env.run("make_magic_plots.py", cwd=test_directory + "/make_magic_plots_example")
+     obj = env.run(file_prefix + "make_magic_plots.py", cwd=test_directory + "/make_magic_plots_example")
      print obj.stdout
      correctfile = test_file_prefix + "make_magic_plots_output_correct.txt"
      results = PT.output_parse(obj.stdout)
@@ -1165,7 +1174,8 @@ def complete_make_magic_plots_test(): # irregular -- runs in a different directo
 
 def complete_convert2unix_test(): # irregular
      """test convert2unix.py"""
-     obj = env.run("convert2unix.py", "-h")
+     obj = env.run(file_prefix + "convert2unix.py", "-h")
+     print 'tested help'
      stat1 = subprocess.check_output('stat Command_line_Tests/convert2unix_example.dat', shell=True)
      print "stat1:  ", stat1
      obj = env.run("convert2unix.py", test_file_prefix + "convert2unix_example.dat")
@@ -1241,7 +1251,9 @@ def complete_LDEO_magic_test():
      outfile = test_file_prefix + 'ldeo_magic_measurements_new.out'
      reference = test_file_prefix + 'ldeo_magic_measurements_correct.out'
      wrong = test_file_prefix + 'ldeo_magic_measurements_incorrect.out'
-     ldeo_magic = Test_instance('ldeo_magic.py', infile, outfile, reference, wrong, None, False, '-LP', 'AF', '-loc', 'here')
+     obj = env.run(file_prefix + 'LDEO_magic.py', '-h')
+     print 'run help manually stdout:', obj.stdout
+     ldeo_magic = Test_instance('LDEO_magic.py', infile, outfile, reference, wrong, None, False, '-LP', 'AF', '-loc', 'here')
 #     ldeo_magic.run_program()
      ldeo_magic.file_in_file_out_sequence()
 #LDEO_magic.py -f ldeo_magic_example.dat -LP AF -F ldeo_magic_measurements.txt -loc here
@@ -1271,7 +1283,7 @@ def complete_TDT_magic_test():
      outfile = test_file_prefix + 'tdt_out_new.out'
      reference = test_file_prefix + 'tdt_out_correct.out'
      wrong = test_file_prefix + 'tdt_out_incorrect.out'
-     raise Exception('TDT_magic pull up gui window and can not be tested')
+     raise Exception('TDT_magic pulls up gui window and can not be tested')
      tdt_magic = Test_instance('TDT_magic.py', infile, outfile, reference, wrong, None, False, '-loc', 'TEST', '-dc', '50.12', '0', '0')
      tdt_magic.file_in_file_out_sequence()
 

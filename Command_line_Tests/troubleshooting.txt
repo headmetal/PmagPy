@@ -60,3 +60,11 @@ travis progress:
 
        'python Rename_me.py' -- works
        'python raise_exception.py' will cause the build to fail, however if that code is nested in a bash script, it will NOT cause the build to fail.  
+
+
+
+Exception: [<function complete_igrf_test at 0x2630e60>, <function complete_upload_magic_test at 0x2633230>, <function complete_foldtest_test at 0x26318c0>, <function complete_make_magic_plots_test at 0x26332a8>, <function complete_pt_rot_test at 0x2630050>, <function complete_TDT_magic_test at 0x26336e0>, <function complete_basemap_magic_test at 0x2631398>, <function complete_cont_rot_test at 0x262fed8>, <function complete_combine_magic_test at 0x262fe60>, <function complete_s_tilt_test at 0x2631140>, <function complete_common_mean_test at 0x2631500>, <function complete_convert_samples_test at 0x26308c0>, <function complete_zeq_magic_redo_test at 0x26331b8>, <function complete_vgpmap_magic_test at 0x26330c8>, <function complete_HUJI_magic_test at 0x2633758>, <function complete_core_depthplot_test at 0x2631578>, <function complete_LDEO_magic_test at 0x26335f0>, <function complete_foldtest_magic_test at 0x2631848>, <function complete_ani_depthplot_test at 0x2631320>, <function complete_fishqq_test at 0x26317d0>, <function complete_convert2unix_test at 0x2633320>]
+
+
+consider re-tooling how this type of output is processed (order matters right now, but it shouldn't)  urgh. 
+{'foldtest_ge.svg': <FoundFile ./new-test-output:foldtest_ge.svg>, 'foldtest_ta.svg': <FoundFile ./new-test-output:foldtest_ta.svg>, 'foldtest_st.svg': <FoundFile ./new-test-output:foldtest_st.svg>}

@@ -143,6 +143,12 @@ def clean_program_name(name = None):
     return n
 
 
+def parse_file_string(string):
+    files = string.split(',')
+    return sorted(files)
+
+
+
 # for testing clean_program_name()
 #clean_program_name("complete_angle.py")
 #clean_program_name("angle")
@@ -208,8 +214,8 @@ def run_individual_program(mapping, program=None): # takes as argument a mapping
         if ".py" in run_program:
             run_program = run_program[:-3]
         program = mapping[run_program]
-        print program
-        print type(program)
+        print 'running:', program
+        #print type(program)
         program()
     except KeyError as er:
         print er
@@ -220,9 +226,10 @@ def run_individual_program(mapping, program=None): # takes as argument a mapping
         print ex
         raise(ex)
 
-
+ignore = """
 if __name__ == "__main__":
     print "Please type the name of the program test you wish to find"
     print "You may enter either: program.py, or: program. No quotation marks, case does not matter"
     search_item = str(raw_input("what program are you looking for?   "))
     find_a_program(search_item)
+"""
