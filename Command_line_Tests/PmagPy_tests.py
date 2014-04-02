@@ -151,7 +151,7 @@ def parse_file_list(string):
     print 'files', len(files), files
     new_files = []
     for f in files:
-        new_f = str(f)
+        new_f = str(f).strip()
         new_f = new_f.replace('{', '')
         new_f = new_f.replace('}', '')
         print 'new f', new_f
