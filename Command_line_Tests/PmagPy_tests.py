@@ -143,9 +143,21 @@ def clean_program_name(name = None):
     return n
 
 
-def parse_file_string(string):
+def parse_file_list(string):
+    print '--'
+    print 'zzz fixing up this here string: {}'.format(string)
+    string = str(string)
     files = string.split(',')
-    return sorted(files)
+    print 'files', len(files), files
+    new_files = []
+    for f in files:
+        new_f = str(f)
+        new_f = new_f.replace('{', '')
+        new_f = new_f.replace('}', '')
+        print 'new f', new_f
+        new_files.append(new_f)
+    print '-'
+    return sorted(new_files)
 
 
 
