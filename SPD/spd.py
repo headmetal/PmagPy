@@ -708,11 +708,11 @@ class PintPars(object):
         'get_delta_CK': (York_Regression, get_n_ptrm, get_max_ptrm_check),
         'get_max_DEV': (York_Regression, get_n_ptrm, get_max_ptrm_check),
         'get_mean_DEV': (York_Regression, get_n_ptrm, get_max_ptrm_check),
-        'get_delta_pal': (York_Regression,),
+        'get_delta_pal': (York_Regression, get_n_ptrm),
         'get_MD_VDS': (York_Regression, get_vds, get_n_tail, get_max_tail_check),
         'get_DRAT_tail': (York_Regression, get_n_ptrm, get_max_ptrm_check, get_DRAT, get_n_tail, get_max_tail_check),
         'get_delta_TR': (York_Regression, get_n_tail, get_max_tail_check),
-        'get_delta_AC': (York_Regression, get_n_add,),
+        'get_delta_AC': (York_Regression, get_n_add),
 }
 
     def reqd_stats(self):  
